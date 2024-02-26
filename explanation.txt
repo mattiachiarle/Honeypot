@@ -1,0 +1,13 @@
+For this assignment, the first goal was to establish a connection between the SSH client and the Paramiko server.
+To accomplish it, I took inspiration from the following repository: https://github.com/internetwache/SSH-Honeypot.
+This project allowed me to understand how to make Paramiko work and how I could use it to implement all the
+requirements for the assignment.
+My initial focus was on the authentication. After understanding that it relied on the function check_auth_password,
+I implemented my logic to allow the login for the users in usernames.txt after 5 attempts. Once it was working, I
+tried to understand how to allow a client-server communication through SSH. This was solved by exploiting channels.
+Then, the most complex part probably was the creation of the fake shell. I had to perform many trials and errors
+before finding a way of creating a fake shell by overwriting check_channel_shell_request and
+check_channel_pty_request.
+Lastly, I figured out how to implement a filesystem. Since it has only one level (i.e., we can't create directories),
+I decided to use a dictionary, with key=filename and value=file content. The precise logic to handle the commands
+can be found in the code comments.
